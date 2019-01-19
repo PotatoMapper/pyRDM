@@ -11,10 +11,7 @@ class RDM:
         self.get_data = url + '/api/get_data'
         self.devices = self.get_data + '?=show_devices=true'
         self.instances = self.get_data + '?=show_instances=true'
-        ###### IV Queue has additional Parameters seen in the ShowIV Method ##########
-        ###### &formatted=Boolean (use false), &instance=InstanceName       ##########
-        self.ivqueue = self.get_data +'?=show_ivqueue'
-        ## Assignment is posted to http://url/dashboard/device/assign/{device_name} ##
+        self.queue = self.get_data +'?=show_ivqueue=true'
         self.assign = url + '/dashboard/device/assign/'
         
     def setHeaders(self):
@@ -62,6 +59,13 @@ class RDM:
                 pSuccess = '{0:.2%}'.format(i['status']['quests']['current_count_db']/i['status']['quests']['total_count'])
                 i['status'] = str(i['status']['quests']['current_count_internal']) + '|' + str(i['status']['quests']['current_count_db'])+ '/'+ str(i['status']['quests']['total_count']) + ' (' + str(pAttempts) + ')|(' + str(pSuccess) + ')'
         return (data)
+
+    def show_ivqueue(self, instance, formatted="false"):
+        resp = s.get(self.queue + "&formatted=" + str(formatted) + "&instance=" + str(instance), auth=(self.usr,self.pwd))
+        data = resp.json()
+        ### Forgot and deleted all my temp IV Instances, will finish this once i remember to make a dummy one ####
+        return data
+        
 
     def assignDevice(self,device,instance):
         body = "instance=" + instance + "&_csrf=" + self.csrf
