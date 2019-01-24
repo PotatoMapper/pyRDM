@@ -2,8 +2,11 @@
 WIP Module for RDM API Calls and Some extra Non API related interactions (Single/Multi Device Assignment swaps, etc)
 Additionally playing with some raw Proto Handling for debugging and investigating useful info for RDM integration
 
-## What and Why?
-The pyRDM module is designed to provide a python base RDM class and appropriate methods for easy developement around RDMs current features.
+## What this IS and what it ISN'T?
+The pyRDM module is designed to provide a python base RDM class and appropriate methods for easy developement around RDMs current features. I'll do my best to keep everything up to date for all API requests from APIRequestHandler.swift.
+
+**This is NOT, Intended to be a full scale application of any sort, I use this as an base RDM object for a flask setup I personally have, so the formatting and output of the API calls are designed around that application. If there is a desire for me to incorporate the subprocesses calls I used with ios-deploy/etc, I will at very least at an example/how to of what I do. Or if someone else would like to contribute, I can integrate a call of sorts like that here if need be**
+
 
 the *requests* package is the only external requirement for pyRDM. All other requirements in the requirements.txt are related to the WIP Proto endpoints.
 
