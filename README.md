@@ -34,6 +34,7 @@ the *requests* package is the only external requirement for pyRDM. All other req
   - ```RDM.assignDevices(assignments) ```
   
 ## To Do for pyRDM calls:
+1) I'll add the subprocess calls to run ios-deploy to remotely remove UIC Test Runner, Since I imagine that's why people asked to see this XD
 - Additional support for RDM Controls
   - Remove device from RDM Backend
   - Clear Quests
