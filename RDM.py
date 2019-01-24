@@ -1,4 +1,4 @@
-import requests, re, datetime
+import requests, re, datetime, time
 from requests.auth import HTTPBasicAuth
 
 s = requests.session()
@@ -12,6 +12,7 @@ class RDM:
         self.devices = self.get_data + '?=show_devices=true'
         self.instances = self.get_data + '?=show_instances=true'
         self.queue = self.get_data +'?=show_ivqueue=true'
+        self.assignments = self.get_data + '?show_assignments=true'
         self.assign = url + '/dashboard/device/assign/'
         
     def setHeaders(self):
@@ -45,6 +46,8 @@ class RDM:
                 has_status = i['status'] != None
             except KeyError:
                 has_status = False
+                #This whole try block for status and the Patch Status function can be removed as Flo was kind enough
+                #to update RDM with my request to set status: null by default now.
                 patchStatus(i)
             if has_status == False:
                 i['status'] = "--"
@@ -66,7 +69,14 @@ class RDM:
         ### Forgot and deleted all my temp IV Instances, will finish this once i remember to make a dummy one ####
         return data
         
-
+    def show_assignments(self):
+        resp = s.get(self.assignments, auth = (self.usr,self.pwd))
+        data = resp.json()['data']['assignments']
+        for i in data:
+            time = i['time']
+            i['time'] = "{:02d}".format((time // 3600))+':'+"{:02d}".format(((time % 3600) // 60))+':'+"{:02d}".format((time%60))
+        return (data)
+    
     def assignDevice(self,device,instance):
         body = "instance=" + instance + "&_csrf=" + self.csrf
         try:
@@ -93,3 +103,4 @@ def formatTimestamp(timestamp):
         int(timestamp)
     ).strftime('%H:%M:%S %m-%d-%y')
     return timestamp
+
