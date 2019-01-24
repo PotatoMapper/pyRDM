@@ -47,14 +47,16 @@ def getData(raw_resp):
                 GMO = GetMapObjectsResponse()
                 gmo = GMO.FromString(gmo_string)
 
-		for mapCell in gmo.map_cells:
+                for mapCell in gmo.map_cells:
                     for wild_Pokemons in mapCell.wild_pokemons:
                         wildPokemons.append({'cell': mapCell.s2_cell_id, 'data': wild_Pokemons})
                     for nearby_Pokemons in mapCell.nearby_pokemons:
                         nearbyPokemons.append({'cell': mapCell.s2_cell_id, 'data': nearby_Pokemons})
                     for fort in mapCell.forts:
                         forts.append({'cell': mapCell.s2_cell_id, 'data': fort})
-                    cells.append(s2Cell(mapCell.s2_cell_id))
+                    cells.append(mapCell.s2_cell_id)
                 return(wildPokemons,nearbyPokemons,forts,cells,gmo)
             except:
                 print("Now you fucked up")
+
+testGMO = {"protos":[{"GetMapObjects":"ChIIgICAgPSz54uIARCmz8HEhy0KEgiAgICA\/LPni4gBEKbPwcSHLQpKCICAgIDss+eLiAEQps\/BxIctWhII3wIZYiC5FFRDhwsyBBACIB1aEAjNAhmOzj5Bu6RW7jICEAJaEAiwAhlNmxd1MYZjwTICEAEKEgiAgICA5LPni4gBEKbPwcSHLQoSCICAgIDcs+eLiAEQps\/BxIctChIIgICAgNSz54uIARCmz8HEhy0KvgEIgICAgMSz54uIARCmz8HEhy0qRgkfURjfZfQH4BCmz8HEhy0ZFHkmMxEiRUAhTngiUpJlVcAqCzg4MTc5ZDljMjAzOgoQ3wKiAgQQASAdWNmwvrv4\/\/\/\/\/wFSPAoLODgxNzlkOWMyMDMRH1EY32X0B+AY3wIg\/\/\/\/\/\/\/\/\/\/\/\/ASkUeSYzESJFQDFOeCJSkmVVwDoEEAEgHVoSCN8CGR9RGN9l9AfgMgQQASAdWhAIvgIZXAueZspFghUyAhACChIIgICAgMyz54uIARCmz8HEhy0KEgiAgICAtLPni4gBEKbPwcSHLQo2CICAgIC8s+eLiAEQps\/BxIctWhAIiQIZFSZxPihAIf0yAhABWhAI4QIZVbozeHzWJRMyAhABChIIgICAgKSz54uIARCmz8HEhy0KEgiAgICArLPni4gBEKbPwcSHLQoSCICAgICUs+eLiAEQps\/BxIctChIIgICAgJyz54uIARCmz8HEhy0KEgiAgICAhLPni4gBEKbPwcSHLQoSCICAgICMs+eLiAEQps\/BxIctChIIgICAgNSw54uIARCmz8HEhy0KEgiAgICAzLDni4gBEKbPwcSHLQoSCICAgIDEsOeLiAEQps\/BxIctChIIgICAgLSw54uIARCmz8HEhy0KEgiAgICAvLDni4gBEKbPwcSHLQpZCICAgICksOeLiAEQps\/BxIctGkUKI2I1ZDY2N2IwMGI4NDQ1YzU5Yjg2ZGQzYTE4ODQ4OTRiLjEyEMS+mKf6LBld\/G1PkCJFQCFIpdjROGZVwEABSAGwAQEKEgiAgICArLDni4gBEKbPwcSHLQoSCICAgICsoeeLiAEQps\/BxIctChIIgICAgPyu54uIARCmz8HEhy0K1gMIgICAgOSu54uIARCmz8HEhy0aYwojMTAxMTM1MGFhZmJlNDY1NGExYzgwZTViYTk1ODFkODkuMTYQ0s7Ms4ctGei+nNmuIkVAIZ30vvG1ZVXAKAMw0wJAAZIBAhABmAEBqgEIELIXKJmAwzW4AbibnI+HLfgBARpFCiM2NWYxMjk1MTQ1MTQ0OTllOWMxMzI3ZWVlYzIyYjk3ZC4xNhDtnfijhC0ZSl0yjpEiRUAhPbX66qplVcBAAUgBsAEBIhIRtA+j1JgiRUAZE6cx+a1lVcAiEhHHPsxPliJFQBkTpzH5rWVVwCISEdYsErGTIkVAGVzYGaisZVXAIhIRzVtGwY4iRUAZE6cx+a1lVcAiEhGs\/Av1jiJFQBnv4GCbsGVVwCISERSWbCWoIkVAGe\/gYJuwZVXAIhIRhjhPP6giRUAZFEx47LFlVcAiEhHqDgMipiJFQBm\/rNQwt2VVwCISESjzIAimIkVAGV7Gvd+1ZVXAIhIREJmtK6siRUAZv6zUMLdlVcAiEhGPcLDnryJFQBkIlo89s2VVwCISES7RkgGwIkVAGcu+po60ZVXAIhIRJKEWL60iRUAZ7+Bgm7BlVcAiEhGfSuuzryJFQBnv4GCbsGVVwAoSCICAgIDUrueLiAEQps\/BxIctChIIgICAgNyu54uIARCmz8HEhy0KfQiAgICAhK\/ni4gBEKbPwcSHLRppCiNiY2VkMmQ4YmQyODI0NzM2OTU0N2JlZDBlNjI1YjJhYy4xNhCV1LfChy0Z84++SdMiRUAhTPvm\/uplVcAoAjD4AUABkgECEAGYAQGqAREQg18ZAAAA4Osn2z8og4rJFbgBlJ6Ur4ctChIIgICAgKS054uIARCmz8HEhy0KJgiAgICAnLTni4gBEKbPwcSHLSISEbtr7QIZIkVAGU+FuZQSZVXAChIIgICAgIS054uIARCmz8HEhy0QARgCIhgIgICAgICg54uIARIFCAMwqQEaAggEIgA="}],"submit_version":3,"longitude":"-85.587710","uuid":"39E1811B-CA17-4D63-8988-6969F4k3DEETS","validation1":"Ú9£î^kK\r2U¿ï`\u0018¯Ø\u0007\t","latitude":"42.266056","trainerlvl":30,"timestamp":1548210956.3161368}
