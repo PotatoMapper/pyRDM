@@ -35,5 +35,5 @@ the *requests* package is the only external requirement for pyRDM. All other req
   - Remove device from RDM Backend
   - Clear Quests
   - Add or Remove Auto-Assignments (For those who desire multiple sets of autoassignments for particular days/events/etc)
-  - Integrate modified version of Racinels TSP solution ```RDM.TSP(instance, type, minlvl, maxlvl)```
+  - Integrate modified version of [Racinel200's](https://github.com/racinel200) TSP solution ```RDM.TSP(instance, type, minlvl, maxlvl)```
     - The solution will allow you to select existing Instance and type, and perform TSP solution on the route. Prompt provides the ability to automatically add the new instance to RDM with minlvl and maxlvl settings if provided on call
