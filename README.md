@@ -13,21 +13,21 @@ the *requests* package is the only external requirement for pyRDM. All other req
 > Where url = http://rdmip:9000, usr = RDM Username, pwd = RDM password
 
 ## Available API Calls
-- Get Device Status = returns device status 
+- > Get Device Status = returns device status 
   - ```devices = RDM.show_devices()```
-- Get instance Status = retunes instance status
+- > Get instance Status = retunes instance status
   - ```instances = RDM.show_instances()```
-- Get Instance IV Queue = returns current Queue information
+- > Get Instance IV Queue = returns current Queue information
   - ``` Queue = RDM.show_ivqueue(instance as str, formatted as str([boolean])) ```
-  -**_Formatted defaults to false, and should be used this way, unless you intend to use a flask template with static image locations that mirror RDM's_**
+**_Formatted defaults to false, and should be used this way, unless you intend to use a flask template with static image locations that mirror RDM's_**
 
 ## Available Non API RDM Controls
 **_These calls work by capturing the CSRF and Session Token on Auth with RDM, and then use these to post to particular web endpoints_**
-- Before using anything of these calls you must set the header with the following method
+- > Before using anything of these calls you must set the header with the following method
   - ```RDM.setHeaders()```
-- Change device assignment = pass device name/uuid and instance name as strings
+- > Change device assignment = pass device name/uuid and instance name as strings
   - ```RDM.assignDevice(device, instance) ```
-- Change Multiple Devices Assignments = Pass a list assignments=[] of Dict() in format { 'device': "deviceName/uuid" , 'instance': "InstanceName" }
+- > Change Multiple Devices Assignments = Pass a list assignments=[] of Dict() in format { 'device': "deviceName/uuid" , 'instance': "InstanceName" }
   - ```RDM.assignDevices(assignments) ```
   
 ## To Do for pyRDM calls:
